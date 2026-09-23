@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAMU 192 - Capacitação Lei Lucas - Telão Interativo (Tema Claro)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter e Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            samu: {
+              red: '#D92027',
+              darkred: '#A81116',
+              blue: '#0B2545',
+              darkblue: '#081C33',
+              lightblue: '#EBF3FA',
+              yellow: '#F59E0B',
+              orange: '#EA580C',
+              emerald: '#059669'
+            }
+          },
+          fontFamily: {
+            title: ['Montserrat', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      background-color: #F8FAFC;
+    }
+    .font-montserrat {
+      font-family: 'Montserrat', sans-serif;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+    /* Estilo para impressão e geração em PDF dos slides */
+    @media print {
+      body {
+        overflow: visible;
+        background: white !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        page-break-after: always;
+        height: 100vh;
+        width: 100vw;
+      }
+    }
+  </style>
+</head>
+<body class="text-slate-800 h-screen w-screen flex flex-col justify-between select-none bg-slate-50 transition-colors duration-200">
+
+  <!-- CABEÇALHO INSTITUCIONAL SUPERIOR (TEMA CLARO E NÍTIDO) -->
+  <header class="w-full bg-white border-b border-slate-200 shadow-sm px-6 lg:px-10 py-3 flex justify-between items-center z-50">
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center justify-center bg-samu-red text-white font-black px-4 py-1.5 rounded-xl shadow-md tracking-wider text-xl font-montserrat border-2 border-red-600">
+        <i class="fa-solid fa-truck-medical mr-2 text-yellow-300"></i> SAMU 192
+      </div>
+      <div class="border-l-2 border-slate-300 pl-4 hidden sm:block">
+        <h1 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Núcleo de Educação em Urgências (NEU / SAMU Boa Vista)</h1>
+        <h2 class="text-base font-extrabold text-slate-900 font-montserrat tracking-tight">Capacitação em Primeiros Socorros nas Escolas — Lei Lucas (Lei nº 13.722)</h2>
+      </div>
+    </div>
+
+    <!-- NAVEGAÇÃO RÁPIDA / BOTÕES DO TELÃO -->
+    <div class="flex items-center space-x-3 no-print">
+      <div class="flex bg-slate-100 rounded-xl p-1 border border-slate-300 shadow-inner">
+        <button onclick="goToSlide(0)" id="tab-0" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-samu-red text-white shadow-sm">
+          1. INSCRIÇÃO
+        </button>
+        <button onclick="goToSlide(1)" id="tab-1" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-samu-blue">
+          2. FREQUÊNCIA (5588)
+        </button>
+        <button onclick="goToSlide(2)" id="tab-2" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-samu-blue">
+          3. CERTIFICADO
+        </button>
+      </div>
+
+      <!-- BOTÃO TELA CHEIA -->
+      <button onclick="toggleFullscreen()" title="Alternar Tela Cheia" class="bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm flex items-center">
+        <i class="fa-solid fa-expand mr-1.5 text-samu-red"></i> Tela Cheia (F11)
+      </button>
+    </div>
+  </header>
+
+  <!-- ÁREA CENTRAL DE CONTEÚDO DOS SLIDES (TEMA CLARO E ALTO CONTRASTE) -->
+  <main class="flex-1 relative flex items-center justify-center p-4 sm:p-8 lg:p-10 overflow-hidden">
+    
+    <!-- ========================================== -->
+    <!-- SLIDE 1: QR CODE DA INSCRIÇÃO              -->
+    <!-- ========================================== -->
+    <section id="slide-0" class="slide active w-full max-w-6xl h-full flex-col lg:flex-row items-center justify-center gap-8 lg:gap-14">
+      
+      <!-- Bloco de Texto e Instruções -->
+      <div class="flex-1 flex flex-col justify-center space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-samu-red text-xs font-black tracking-wider uppercase w-fit shadow-sm">
+          <i class="fa-solid fa-id-card"></i> 1ª Etapa Obrigatória
+        </div>
+        
+        <div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-montserrat tracking-tight text-slate-900 leading-tight">
+            Faça sua <span class="text-samu-red underline decoration-yellow-400 decoration-4">Inscrição Oficial</span>
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg mt-2 font-medium leading-relaxed">
+            Aponte a câmera do seu celular para o QR Code ao lado para preencher o formulário oficial da turma do curso.
+          </p>
+        </div>
+
+        <!-- Cards de Orientação -->
+        <div class="space-y-3 pt-1">
+          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-red-50 text-samu-red flex items-center justify-center flex-shrink-0 text-xl border border-red-100">
+              <i class="fa-solid fa-spell-check"></i>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base">Nome Completo sem Abreviações</h4>
+              <p class="text-slate-600 text-xs sm:text-sm mt-0.5">O nome digitado no formulário será impresso de forma automática no seu certificado oficial.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 text-xl border border-amber-100">
+              <i class="fa-solid fa-asterisk"></i>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base">Campos Obrigatórios (*)</h4>
+              <p class="text-slate-600 text-xs sm:text-sm mt-0.5">Preencha todos os itens assinalados com asterisco para validação cadastral junto ao SAMU.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-500 text-xs font-semibold pt-1">
+          <span class="inline-flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+            <i class="fa-solid fa-shield-halved"></i> Formulário Seguro
+          </span>
+          <span>•</span>
+          <span>Inscrição Rápida em 1 Minuto</span>
+        </div>
+      </div>
+
+      <!-- Bloco do QR Code Inscrição -->
+      <div class="flex-shrink-0 flex flex-col items-center">
+        <div class="relative p-6 sm:p-7 bg-white rounded-3xl shadow-xl border-4 border-samu-red ring-8 ring-red-100 flex flex-col items-center">
+          <span class="absolute -top-3.5 bg-samu-red text-white text-xs font-black tracking-widest px-4 py-1.5 rounded-full uppercase shadow-md">
+            Inscrição da Turma
+          </span>
+          
+          <img src="imagens/qr-code-inscricao-ifrr.png" alt="QR Code para inscrição oficial da turma" class="w-64 h-64 sm:w-80 sm:h-80 object-contain rounded-xl p-1 bg-white">
+          
+          <div class="mt-4 text-center">
+            <span class="text-slate-900 font-black text-sm uppercase tracking-wider block font-montserrat">
+              Aponte a Câmera Aqui
+            </span>
+            <span class="text-slate-500 text-xs font-medium">
+              Conexão Segura com o Formulário
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 2: QR CODE DA FREQUÊNCIA (CÓD. 5588) -->
+    <!-- ========================================== -->
+    <section id="slide-1" class="slide w-full max-w-6xl h-full flex-col lg:flex-row items-center justify-center gap-8 lg:gap-14">
+      
+      <!-- Bloco de Texto e Código de Destaque -->
+      <div class="flex-1 flex flex-col justify-center space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-black tracking-wider uppercase w-fit shadow-sm">
+          <i class="fa-solid fa-clipboard-check"></i> 2ª Etapa Obrigatória
+        </div>
+        
+        <div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-montserrat tracking-tight text-slate-900 leading-tight">
+            Confirmação de <span class="text-emerald-600 underline decoration-teal-300 decoration-4">Frequência</span>
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg mt-2 font-medium leading-relaxed">
+            Escaneie o QR Code com seu celular para abrir a lista de presença e informe o código da turma abaixo.
+          </p>
+        </div>
+
+        <!-- DESTAQUE DO CÓDIGO 5588 (CLARO E LEGÍVEL DE LONGE) -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-400 shadow-md relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-black uppercase tracking-widest text-emerald-800 block">
+                Código de Acesso da Frequência:
+              </span>
+              <span class="text-5xl sm:text-6xl font-black text-slate-900 font-montserrat tracking-widest drop-shadow-sm">
+                5588
+              </span>
+            </div>
+            <div class="sm:text-right flex flex-col sm:items-end justify-center">
+              <span class="inline-flex items-center bg-emerald-600 text-white text-xs font-extrabold px-3 py-1.5 rounded-lg shadow-sm">
+                <i class="fa-solid fa-key mr-1.5 text-yellow-300"></i> Código da Turma
+              </span>
+              <p class="text-slate-600 text-xs mt-1.5 font-bold">Digite 5588 na pergunta solicitada</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regra de Frequência -->
+        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 text-xl border border-emerald-100">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-slate-900 text-base">Frequência de 100% Obrigatória</h4>
+            <p class="text-slate-600 text-xs sm:text-sm mt-0.5">A presença integral na capacitação é pré-requisito indispensável para a liberação da certificação Lei Lucas.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-500 text-xs font-semibold pt-1">
+          <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+            <i class="fa-solid fa-check"></i> Registro Imediato
+          </span>
+          <span>•</span>
+          <span>Assinatura Digital de Presença</span>
+        </div>
+      </div>
+
+      <!-- Bloco do QR Code Frequência (NOVO QR CODE ATUALIZADO) -->
+      <div class="flex-shrink-0 flex flex-col items-center">
+        <div class="relative p-6 sm:p-7 bg-white rounded-3xl shadow-xl border-4 border-emerald-500 ring-8 ring-emerald-100 flex flex-col items-center">
+          <span class="absolute -top-3.5 bg-emerald-600 text-white text-xs font-black tracking-widest px-4 py-1.5 rounded-full uppercase shadow-md">
+            Lista de Presença
+          </span>
+          
+          <!-- QR Code de frequência enviado pelo usuário -->
+          <img src="imagens/qr-code-frequencia-ifrr.png" alt="QR Code para confirmação de frequência" class="w-64 h-64 sm:w-80 sm:h-80 object-contain rounded-xl p-1 bg-white">
+          
+          <div class="mt-4 text-center">
+            <span class="text-slate-900 font-black text-sm uppercase tracking-wider block font-montserrat">
+              Escaneie e Digite: <span class="text-emerald-700 text-base font-extrabold underline">5588</span>
+            </span>
+            <span class="text-slate-500 text-xs font-medium">
+              Confirmação Oficial de Presença
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 3: QR CODE DA EMISSÃO DE CERTIFICADO -->
+    <!-- ========================================== -->
+    <section id="slide-2" class="slide w-full max-w-6xl h-full flex-col lg:flex-row items-center justify-center gap-8 lg:gap-14">
+      
+      <!-- Bloco de Texto e Orientações -->
+      <div class="flex-1 flex flex-col justify-center space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 border border-blue-200 text-samu-blue text-xs font-black tracking-wider uppercase w-fit shadow-sm">
+          <i class="fa-solid fa-graduation-cap"></i> 3ª Etapa Final
+        </div>
+        
+        <div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-montserrat tracking-tight text-slate-900 leading-tight">
+            Emissão do <span class="text-samu-blue underline decoration-amber-400 decoration-4">Certificado Oficial</span>
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg mt-2 font-medium leading-relaxed">
+            Ao concluir a capacitação e registrar sua frequência, acesse o portal de certificados apontando a câmera para o QR Code.
+          </p>
+        </div>
+
+        <!-- Detalhes do Certificado -->
+        <div class="space-y-3 pt-1">
+          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-samu-blue flex items-center justify-center flex-shrink-0 text-xl border border-blue-100">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base">Validade Legal da Lei Lucas (Lei Federal 13.722)</h4>
+              <p class="text-slate-600 text-xs sm:text-sm mt-0.5">Certificado oficial de Primeiros Socorros no Ambiente Escolar emitido pelo SAMU 192 e NEU.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 text-xl border border-amber-100">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base">Download do Documento em PDF</h4>
+              <p class="text-slate-600 text-xs sm:text-sm mt-0.5"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-500 text-xs font-semibold pt-1">
+          <span class="inline-flex items-center gap-1.5 text-blue-700 font-bold bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">
+            <i class="fa-solid fa-circle-check"></i> Consulta por CPF ou E-mail
+          </span>
+          <span>•</span>
+          <span>Autenticação Digital SAMU/NEU</span>
+        </div>
+      </div>
+
+      <!-- Bloco do QR Code Certificado (NOVO QR CODE ATUALIZADO) -->
+      <div class="flex-shrink-0 flex flex-col items-center">
+        <div class="relative p-6 sm:p-7 bg-white rounded-3xl shadow-xl border-4 border-samu-blue ring-8 ring-blue-100 flex flex-col items-center">
+          <span class="absolute -top-3.5 bg-samu-blue text-white text-xs font-black tracking-widest px-4 py-1.5 rounded-full uppercase shadow-md">
+            Portal de Certificados
+          </span>
+          
+          <!-- QR Code de certificado enviado pelo usuário -->
+          <img src="imagens/qr-code-certificado-ifrr.png" alt="QR Code para acesso aos certificados" class="w-64 h-64 sm:w-80 sm:h-80 object-contain rounded-xl p-1 bg-white">
+          
+          <div class="mt-4 text-center">
+            <span class="text-slate-900 font-black text-sm uppercase tracking-wider block font-montserrat">
+              Acesse Seus Certificados
+            </span>
+            <span class="text-slate-500 text-xs font-medium">
+              Aponte a Câmera para Abrir o Portal
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- BARRA DE CONTROLE INFERIOR / NAVEGAÇÃO -->
+  <footer class="w-full bg-white border-t border-slate-200 px-6 lg:px-10 py-3 flex justify-between items-center z-50 no-print shadow-sm">
+    
+    <!-- Dica de atalhos de teclado -->
+    <div class="flex items-center space-x-3 text-slate-500 text-xs font-semibold">
+      <span class="hidden sm:inline"><kbd class="bg-slate-100 border border-slate-300 px-2 py-0.5 rounded text-slate-700 shadow-sm">←</kbd> <kbd class="bg-slate-100 border border-slate-300 px-2 py-0.5 rounded text-slate-700 shadow-sm">→</kbd> Setas do teclado</span>
+      <span class="hidden md:inline">•</span>
+      <span class="hidden md:inline"><kbd class="bg-slate-100 border border-slate-300 px-2 py-0.5 rounded text-slate-700 shadow-sm">Espaço</kbd> Avança slide</span>
+    </div>
+
+    <!-- Indicador de Slide Atual -->
+    <div class="flex items-center space-x-2">
+      <span id="slide-indicator" class="text-xs sm:text-sm font-extrabold text-slate-800 bg-slate-100 px-3.5 py-1 rounded-xl border border-slate-300">
+        Slide 1 de 3
+      </span>
+    </div>
+
+    <!-- Botões de Avançar e Voltar -->
+    <div class="flex items-center space-x-2.5">
+      <button onclick="prevSlide()" class="bg-white hover:bg-slate-100 text-slate-700 font-bold px-4 py-1.5 rounded-xl text-xs sm:text-sm border border-slate-300 transition flex items-center shadow-sm">
+        <i class="fa-solid fa-arrow-left mr-1.5"></i> Anterior
+      </button>
+      <button onclick="nextSlide()" class="bg-samu-red hover:bg-red-700 text-white font-black px-5 py-1.5 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center">
+        Próximo <i class="fa-solid fa-arrow-right ml-1.5"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE NAVEGAÇÃO E CONTROLE DOS SLIDES -->
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    const slides = [
+      document.getElementById('slide-0'),
+      document.getElementById('slide-1'),
+      document.getElementById('slide-2')
+    ];
+
+    const tabs = [
+      document.getElementById('tab-0'),
+      document.getElementById('tab-1'),
+      document.getElementById('tab-2')
+    ];
+
+    const tabStyles = [
+      { active: 'bg-samu-red text-white shadow-sm font-bold', inactive: 'text-slate-700 hover:text-samu-blue font-medium' },
+      { active: 'bg-emerald-600 text-white shadow-sm font-bold', inactive: 'text-slate-700 hover:text-samu-blue font-medium' },
+      { active: 'bg-samu-blue text-white shadow-sm font-bold', inactive: 'text-slate-700 hover:text-samu-blue font-medium' }
+    ];
+
+    function updateSlide() {
+      slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      tabs.forEach((tab, index) => {
+        if (tab) {
+          if (index === currentSlide) {
+            tab.className = `px-4 py-1.5 rounded-lg text-xs transition-all ${tabStyles[index].active}`;
+          } else {
+            tab.className = `px-4 py-1.5 rounded-lg text-xs transition-all ${tabStyles[index].inactive}`;
+          }
+        }
+      });
+
+      document.getElementById('slide-indicator').textContent = `Slide ${currentSlide + 1} de ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateSlide();
+      }
+    }
+
+    // Atalhos pelo Teclado (Setas, Barra de Espaço e PageUp/Down)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === '1') {
+        goToSlide(0);
+      } else if (e.key === '2') {
+        goToSlide(1);
+      } else if (e.key === '3') {
+        goToSlide(2);
+      }
+    });
+
+    // Alternar Modo Tela Cheia
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          console.warn(`Erro ao ativar modo tela cheia: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
